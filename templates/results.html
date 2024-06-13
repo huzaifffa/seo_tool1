@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Metadata Extractor - Results</title>
+    <style>
+        .good { color: green; }
+        .bad { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Results</h1>
+    <ul>
+    {% for result in results %}
+        <li>
+            <strong>URL:</strong> {{ result.url }}<br>
+            <strong>Title:</strong> {{ result.title }}  <br>
+                {% for suggestion in result.title_improvement %}
+                    <span class="{{ 'good' if 'looks good' in suggestion else 'bad' }}">{{ suggestion }}</span>
+                {% endfor %}<br><br>
+            <strong>Meta Description:</strong> {{ result.meta_description }} <br>
+            {% for suggestion in result.meta_description_improvement %}
+            <span class="{{ 'good' if 'looks good' in suggestion else 'bad' }}">{{ suggestion }}</span>
+        {% endfor %}
+         
+        </li><br>
+        <hr>
+    {% endfor %}
+    </ul>
+    <a href="/">Go back</a>
+</body>
+</html>
